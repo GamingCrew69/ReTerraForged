@@ -9,7 +9,7 @@ public class ColumnAlignment {
 	private Screen parent;
 	private int horizontalPadding;
 	private int verticalPadding;
-	private int horizontalMargin; 
+	private int horizontalMargin;
 	private int verticalMargin;
 	private int left;
 	

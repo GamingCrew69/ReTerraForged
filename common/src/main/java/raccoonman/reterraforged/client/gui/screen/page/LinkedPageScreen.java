@@ -29,7 +29,7 @@ public abstract class LinkedPageScreen extends Screen {
 	@Override
 	public void init() {
 		super.init();
-		
+
 		int buttonsCenter = this.width / 2;
         int buttonWidth = 50;
         int buttonHeight = 20;

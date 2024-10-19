@@ -3,6 +3,7 @@ package raccoonman.reterraforged.world.worldgen.noise.module;
 import java.util.Arrays;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.util.StringRepresentable;
@@ -10,7 +11,7 @@ import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil;
 import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil.Vec2f;
 
 public record Erosion(Noise input, int seed, int octaves, float strength, float gridSize, float amplitude, float lacunarity, float distanceFallOff, BlendMode blendMode, ThreadLocal<float[]> cache) implements Noise {
-	public static final Codec<Erosion> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+	public static final MapCodec<Erosion> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 		Noise.HOLDER_HELPER_CODEC.fieldOf("input").forGetter(Erosion::input),
 		Codec.INT.fieldOf("seed").forGetter(Erosion::seed),
 		Codec.INT.fieldOf("octaves").forGetter(Erosion::octaves),
@@ -49,7 +50,7 @@ public record Erosion(Noise input, int seed, int octaves, float strength, float 
 	}
 
 	@Override
-	public Codec<Erosion> codec() {
+	public MapCodec<Erosion> codec() {
 		return CODEC;
 	}
 
@@ -148,21 +149,18 @@ public record Erosion(Noise input, int seed, int octaves, float strength, float 
 
 	public enum BlendMode implements StringRepresentable {
 		CONSTANT("constant") {
-			
 			@Override
 			public float blend(float value, float erosion, float strength) {
 				return 1.0F - strength;
 			}
 		},
 		INPUT_LINEAR("input_linear") {
-			
 			@Override
 			public float blend(float value, float erosion, float strength) {
 				return 1.0F - strength * value;
 			}
 		},
 		OUTPUT_LINEAR("output_linear") {
-			
 			@Override
 			public float blend(float value, float erosion, float strength) {
 				return 1.0F - strength * erosion;

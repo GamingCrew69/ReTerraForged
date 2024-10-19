@@ -7,10 +7,10 @@
   "client": [
   	"MixinPresetEditor",
   ],
-  "mixins": [
+  "mixins": [,
+  	"MixinChunkStatus",
   	"MixinMinecraftServer",
-  	"MixinBiomeModificationImpl",
-  	"MixinFabricDataGenerator$Pack"
+  	"MixinBiomeModificationImpl"
   ],
   "injectors": {
     "defaultRequire": 1

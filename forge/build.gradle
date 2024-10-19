@@ -46,7 +46,7 @@ dependencies {
     forge("net.minecraftforge:forge:${rootProject.minecraft_version}-${rootProject.forge_version}")
     
 	compileOnly "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
-//	modImplementation "com.github.glitchfiend:TerraBlender-forge:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
+//  modImplementation("com.github.glitchfiend:TerraBlender-forge:${rootProject.minecraft_version}-${rootProject.terrablender_version}")
     
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive false }
@@ -63,12 +63,12 @@ sourceSets {
 }
 
 processResources {
-	inputs.property "forgeVersion", "48.0.34"
+	inputs.property "forgeVersion", "50.1.6"
     inputs.property "version", project.version
 
     filesMatching("META-INF/mods.toml") {
         expand "version": project.version
-		expand "forgeVersion": "48.0.34"
+		expand "forgeVersion": "50.1.6"
     }
 }
 

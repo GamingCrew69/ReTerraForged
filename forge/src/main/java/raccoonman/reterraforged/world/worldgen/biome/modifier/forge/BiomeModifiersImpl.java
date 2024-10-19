@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.resources.ResourceKey;
@@ -28,12 +29,12 @@ public class BiomeModifiersImpl {
 	public static BiomeModifier add(Order order, GenerationStep.Decoration step, Optional<Pair<Filter.Behavior, HolderSet<Biome>>> biomes, HolderSet<PlacedFeature> features) {
 		return new AddModifier(order, step, biomes.map((p) -> new Filter(p.getSecond(), p.getFirst())), features);
 	}
-
+	
 	public static BiomeModifier replace(GenerationStep.Decoration step, Optional<HolderSet<Biome>> biomes, Map<ResourceKey<PlacedFeature>, Holder<PlacedFeature>> replacements) {
 		return new ReplaceModifier(step, biomes, replacements);
 	}
 	
-	public static void register(String name, Codec<? extends BiomeModifier> value) {
+	public static void register(String name, MapCodec<? extends BiomeModifier> value) {
 		RegistryUtil.register(RTFBuiltInRegistries.BIOME_MODIFIER_TYPE, name, value);
 	}
 }
