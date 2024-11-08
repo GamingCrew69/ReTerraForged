@@ -24,7 +24,7 @@ public class PresetSurfaceRuleData {
 				SurfaceRuleData.overworld(),
 				makeStrataRule(noise)
 		);
-    }
+	}
     
 	private static SurfaceRules.RuleSource makeStrataRule(HolderGetter<Noise> noise) {
 		Holder<Noise> depth = noise.getOrThrow(PresetStrataNoise.STRATA_DEPTH);

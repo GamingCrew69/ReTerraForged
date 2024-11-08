@@ -4,7 +4,6 @@ import java.util.function.Function;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.Codec;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import raccoonman.reterraforged.registries.RTFBuiltInRegistries;
 

@@ -3,7 +3,6 @@ package raccoonman.reterraforged.world.worldgen.biome.modifier.fabric;
 import java.util.List;
 import java.util.Optional;
 
-import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.Codec;

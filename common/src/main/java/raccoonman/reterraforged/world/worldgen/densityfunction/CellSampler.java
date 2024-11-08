@@ -2,8 +2,6 @@ package raccoonman.reterraforged.world.worldgen.densityfunction;
 
 import java.util.function.Supplier;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.KeyDispatchCodec;
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.Codec;

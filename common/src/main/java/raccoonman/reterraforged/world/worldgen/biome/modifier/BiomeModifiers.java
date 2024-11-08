@@ -6,7 +6,6 @@ import java.util.Optional;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.Codec;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
@@ -59,7 +58,7 @@ public class BiomeModifiers {
 	public static BiomeModifier replace(GenerationStep.Decoration step, Optional<HolderSet<Biome>> biomes, Map<ResourceKey<PlacedFeature>, Holder<PlacedFeature>> replacements) {
 		throw new UnsupportedOperationException();
 	}
-
+	
 	public static void register(String name, Codec<? extends BiomeModifier> value) {
 		RegistryUtil.register(RTFBuiltInRegistries.BIOME_MODIFIER_TYPE, name, value);
 	}

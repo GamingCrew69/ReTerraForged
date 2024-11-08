@@ -35,7 +35,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.*;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtIo;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
@@ -303,7 +306,7 @@ public class FeatureTemplate {
 
     public static Optional<FeatureTemplate> load(InputStream data) {
         try {
-            CompoundTag root = NbtIo.readCompressed(data, NbtAccounter.unlimitedHeap());
+            CompoundTag root = NbtIo.readCompressed(data);
             if (!root.contains("palette") || !root.contains("blocks")) {
                 return Optional.empty();
             }

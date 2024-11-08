@@ -19,7 +19,6 @@ import net.minecraft.server.level.progress.ChunkProgressListenerFactory;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.storage.LevelStorageSource;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import raccoonman.reterraforged.server.RTFMinecraftServer;
 import raccoonman.reterraforged.world.worldgen.feature.template.template.FeatureTemplateManager;
 
@@ -41,14 +40,14 @@ public class MixinMinecraftServer {
 	}
 
 	@Inject(
-		method = { "lambda$reloadResources$27" },
+		method = { "lambda$reloadResources$26" },
 		require = 0,
 		at = @At("TAIL")
 	)
-	private void lambda$reloadResources$27(CallbackInfoReturnable callback) {
+	private void lambda$reloadResources$26(CallbackInfo callback) {
 		this.templateManager.onReload(this.getResourceManager());
 	}
-
+	
 	@Shadow
 	private ResourceManager getResourceManager() {
 		throw new UnsupportedOperationException();

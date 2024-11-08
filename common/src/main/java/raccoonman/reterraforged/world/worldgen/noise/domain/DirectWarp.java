@@ -2,7 +2,6 @@ package raccoonman.reterraforged.world.worldgen.noise.domain;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.Codec;
 import raccoonman.reterraforged.world.worldgen.noise.module.Noise.Visitor;
 
 public record DirectWarp() implements Domain {

@@ -4,7 +4,6 @@ import java.util.function.Function;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.Codec;
 import raccoonman.reterraforged.registries.RTFBuiltInRegistries;
 
 // theres other worldgen libraries we can use for this that aren't so janky

@@ -3,7 +3,6 @@ package raccoonman.reterraforged.world.worldgen.surface.rule;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.ImmutableList;

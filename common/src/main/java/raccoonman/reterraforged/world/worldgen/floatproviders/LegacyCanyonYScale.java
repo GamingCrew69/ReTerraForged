@@ -2,7 +2,6 @@ package raccoonman.reterraforged.world.worldgen.floatproviders;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.Codec;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.FloatProvider;
 import net.minecraft.util.valueproviders.FloatProviderType;

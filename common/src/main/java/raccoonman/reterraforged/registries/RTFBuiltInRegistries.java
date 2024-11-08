@@ -2,7 +2,6 @@ package raccoonman.reterraforged.registries;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.Codec;
 import net.minecraft.core.Registry;
 import raccoonman.reterraforged.platform.RegistryUtil;
 import raccoonman.reterraforged.world.worldgen.biome.modifier.BiomeModifier;

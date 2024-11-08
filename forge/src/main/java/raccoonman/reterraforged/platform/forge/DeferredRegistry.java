@@ -34,12 +34,12 @@ import net.minecraftforge.registries.GameData;
 class DeferredRegistry<T> implements Registry<T> {
 	private ResourceKey<? extends Registry<T>> key;
 	protected Supplier<Registry<T>> registry;
-	
+
 	public DeferredRegistry(ResourceKey<? extends Registry<T>> key, Supplier<Registry<T>> registry) {
 		this.key = key;
 		this.registry = registry;
 	}
-	
+
 	@Override
 	public T byId(int id) {
 		return this.registry.get().byId(id);
@@ -194,32 +194,45 @@ class DeferredRegistry<T> implements Registry<T> {
 	public RegistryLookup<T> asLookup() {
 		return this.registry.get().asLookup();
 	}
-	
+
 	public static <T> Registry<T> memoize(ResourceKey<? extends Registry<T>> key, Supplier<Registry<T>> supplier) {
 		return new DeferredRegistry<>(key, Suppliers.memoize(supplier::get));
 	}
-	
+
 	public static class Writable<T> extends DeferredRegistry<T> implements WritableRegistry<T> {
 		private final DeferredRegister<T> register;
-		
+
 		public Writable(DeferredRegister<T> register) {
 			super(register.getRegistryKey(), () -> GameData.getWrapper(register.getRegistryKey(), Lifecycle.stable()));
-			
+
 			this.register = register;
 		}
-		
+
 		public void register(IEventBus bus) {
 			this.register.register(bus);
 		}
 
 		@Override
-		public Reference<T> register(ResourceKey<T> key, T value, Lifecycle lifecycle) {
+		public Holder<T> registerMapping(int i, ResourceKey<T> key, T value, Lifecycle lifecycle) {
 			Holder.Reference<T> holder = Holder.Reference.createStandAlone(new HolderOwner<>() {
-			    
+
 				@Override
 				public boolean canSerializeIn(HolderOwner<T> arg) {
-			        return false;
-			    }
+					return false;
+				}
+			}, key);
+			this.register.register(key.location().getPath(), () -> value);
+			return holder;
+		}
+
+		@Override
+		public Reference<T> register(ResourceKey<T> key, T value, Lifecycle lifecycle) {
+			Holder.Reference<T> holder = Holder.Reference.createStandAlone(new HolderOwner<>() {
+
+				@Override
+				public boolean canSerializeIn(HolderOwner<T> arg) {
+					return false;
+				}
 			}, key);
 			this.register.register(key.location().getPath(), () -> value);
 			return holder;

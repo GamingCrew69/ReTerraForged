@@ -33,47 +33,47 @@ public class DataGenUtilImpl {
 
 	// a port of the forge patches to RegistriesDatapackGenerator
 	private static class Provider implements DataProvider {
-		private static final Logger LOGGER = LogUtils.getLogger();
-		private final PackOutput output;
-		private final CompletableFuture<HolderLookup.Provider> registries;
+	    private static final Logger LOGGER = LogUtils.getLogger();
+	    private final PackOutput output;
+	    private final CompletableFuture<HolderLookup.Provider> registries;
 
-		public Provider(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture) {
-			this.registries = completableFuture;
-			this.output = arg;
-		}
+	    public Provider(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture) {
+	        this.registries = completableFuture;
+	        this.output = arg;
+	    }
 
-		@Override
-		public CompletableFuture<?> run(CachedOutput arg) {
-			return this.registries.thenCompose(provider -> {
-				RegistryOps<JsonElement> ops = RegistryOps.create(JsonOps.INSTANCE, provider);
-				return CompletableFuture.allOf(DynamicRegistries.getDynamicRegistries().stream().flatMap(arg3 -> this.dumpRegistryCap(arg, provider, ops, arg3).stream()).toArray(CompletableFuture[]::new));
-			});
-		}
+	    @Override
+	    public CompletableFuture<?> run(CachedOutput arg) {
+	        return this.registries.thenCompose(provider -> {
+	            RegistryOps<JsonElement> ops = RegistryOps.create(JsonOps.INSTANCE, provider);
+	            return CompletableFuture.allOf(DynamicRegistries.getDynamicRegistries().stream().flatMap(arg3 -> this.dumpRegistryCap(arg, provider, ops, arg3).stream()).toArray(CompletableFuture[]::new));
+	        });
+	    }
 
-		private <T> Optional<CompletableFuture<?>> dumpRegistryCap(CachedOutput output, HolderLookup.Provider provider, DynamicOps<JsonElement> ops, RegistryDataLoader.RegistryData<T> registryData) {
-			ResourceKey<? extends Registry<T>> resourcekey = registryData.key();
+	    private <T> Optional<CompletableFuture<?>> dumpRegistryCap(CachedOutput output, HolderLookup.Provider provider, DynamicOps<JsonElement> ops, RegistryDataLoader.RegistryData<T> registryData) {
+	        ResourceKey<? extends Registry<T>> resourcekey = registryData.key();
 
-			return provider.lookup(resourcekey).map(lookup -> {
-				PackOutput.PathProvider path = this.output.createPathProvider(PackOutput.Target.DATA_PACK, prefixNamespace(resourcekey.location()));
-				Stream<Holder.Reference<T>> holders = lookup.listElements();
-				return CompletableFuture.allOf(holders.map((ref) -> {
-					return dumpValue(path.json(ref.key().location()), output, ops, registryData.elementCodec(), ref.value());
-				}).toArray(CompletableFuture[]::new));
-			});
-		}
+	        return provider.lookup(resourcekey).map(lookup -> {
+	            PackOutput.PathProvider path = this.output.createPathProvider(PackOutput.Target.DATA_PACK, prefixNamespace(resourcekey.location()));
+	            Stream<Holder.Reference<T>> holders = lookup.listElements();
+	            return CompletableFuture.allOf(holders.map((ref) -> {
+	            	return dumpValue(path.json(ref.key().location()), output, ops, registryData.elementCodec(), ref.value());
+	            }).toArray(CompletableFuture[]::new));
+	        });
+	    }
 
-		private static String prefixNamespace(ResourceLocation location) {
-			return location.getNamespace().equals("minecraft") ? location.getPath() : location.getNamespace() +  "/"  + location.getPath();
-		}
+	    private static String prefixNamespace(ResourceLocation location) {
+	        return location.getNamespace().equals("minecraft") ? location.getPath() : location.getNamespace() +  "/"  + location.getPath();
+	    }
 
-		private static <E> CompletableFuture<?> dumpValue(Path path, CachedOutput arg, DynamicOps<JsonElement> dynamicOps, Encoder<E> encoder, E object) {
-			Optional<JsonElement> optional = encoder.encodeStart(dynamicOps, object).resultOrPartial(string -> LOGGER.error("Couldn't serialize element {}: {}", path, string));
-			return optional.isPresent() ? DataProvider.saveStable(arg, optional.get(), path) : CompletableFuture.completedFuture(null);
-		}
+	    private static <E> CompletableFuture<?> dumpValue(Path path, CachedOutput arg, DynamicOps<JsonElement> dynamicOps, Encoder<E> encoder, E object) {
+	        Optional<JsonElement> optional = encoder.encodeStart(dynamicOps, object).resultOrPartial(string -> LOGGER.error("Couldn't serialize element {}: {}", path, string));
+	        return optional.isPresent() ? DataProvider.saveStable(arg, optional.get(), path) : CompletableFuture.completedFuture(null);
+	    }
 
-		@Override
-		public String getName() {
-			return "Registries";
-		}
+	    @Override
+	    public String getName() {
+	        return "Registries";
+	    }
 	}
 }

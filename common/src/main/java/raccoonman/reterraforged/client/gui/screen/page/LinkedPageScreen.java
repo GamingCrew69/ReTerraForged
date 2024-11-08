@@ -29,8 +29,8 @@ public abstract class LinkedPageScreen extends Screen {
 	@Override
 	public void init() {
 		super.init();
-
-		int buttonsCenter = this.width * 52 / 62; //21 / 25;
+		
+		int buttonsCenter = this.width / 2;
         int buttonWidth = 50;
         int buttonHeight = 20;
         int buttonPad = 2;
@@ -68,7 +68,7 @@ public abstract class LinkedPageScreen extends Screen {
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		super.renderBackground(guiGraphics, mouseY, mouseY, partialTicks);
+		super.renderBackground(guiGraphics);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 	}
 	

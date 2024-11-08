@@ -26,7 +26,7 @@ public record NoiseFunction(Holder<Noise> noise, int seed) implements MarkerFunc
 	}
 	
 	public record Marker(Holder<Noise> noise) implements MarkerFunction {
-		public static final Codec<Marker> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+		public static final Codec<NoiseFunction.Marker> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 			Noise.CODEC.fieldOf("noise").forGetter(NoiseFunction.Marker::noise)
 		).apply(instance, NoiseFunction.Marker::new));
 

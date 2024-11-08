@@ -3,7 +3,6 @@ package raccoonman.reterraforged.world.worldgen.feature.placement;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.dimension.LevelStem;

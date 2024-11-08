@@ -1,6 +1,5 @@
 package raccoonman.reterraforged.world.worldgen.feature.chance;
 
-import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.Codec;

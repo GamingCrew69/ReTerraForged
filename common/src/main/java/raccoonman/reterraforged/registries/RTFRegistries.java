@@ -24,7 +24,6 @@ public class RTFRegistries {
 	public static final ResourceKey<Registry<Codec<? extends TemplateDecorator<?>>>> TEMPLATE_DECORATOR_TYPE = createKey("worldgen/template_decorator_type");
 	public static final ResourceKey<Registry<Codec<? extends BiomeModifier>>> BIOME_MODIFIER_TYPE = createKey("forge:biome_modifier_serializers");
 	public static final ResourceKey<Registry<Codec<? extends StructureRule>>> STRUCTURE_RULE_TYPE = createKey("worldgen/structure_rule_type");
-
 	public static final ResourceKey<Registry<Noise>> NOISE = createKey("worldgen/noise");
 	public static final ResourceKey<Registry<BiomeModifier>> BIOME_MODIFIER = createKey("forge:biome_modifier");
 	public static final ResourceKey<Registry<StructureRule>> STRUCTURE_RULE = createKey("worldgen/structure_rule");

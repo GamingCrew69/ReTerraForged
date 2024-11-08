@@ -2,7 +2,6 @@ package raccoonman.reterraforged.world.worldgen.biome.modifier.forge;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.Codec;
 import raccoonman.reterraforged.world.worldgen.biome.modifier.BiomeModifier;
 
 interface ForgeBiomeModifier extends BiomeModifier, net.minecraftforge.common.world.BiomeModifier {

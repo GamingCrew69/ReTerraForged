@@ -1,8 +1,8 @@
 package raccoonman.reterraforged.world.worldgen.structure.rule;
 
 import com.google.common.collect.ImmutableSet;
-
 import com.mojang.serialization.Codec;
+
 import raccoonman.reterraforged.platform.RegistryUtil;
 import raccoonman.reterraforged.registries.RTFBuiltInRegistries;
 import raccoonman.reterraforged.world.worldgen.cell.terrain.Terrain;

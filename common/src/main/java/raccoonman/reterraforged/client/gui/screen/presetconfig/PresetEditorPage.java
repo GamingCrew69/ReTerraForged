@@ -208,7 +208,7 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 	    }
 
 	    @Override
-	    public void renderWidget(GuiGraphics guiGraphics, int mx, int my, float partialTicks) {
+	    public void render(GuiGraphics guiGraphics, int mx, int my, float partialTicks) {
 	    	int x = this.getX();
 	    	int y = this.getY();
 	    	
