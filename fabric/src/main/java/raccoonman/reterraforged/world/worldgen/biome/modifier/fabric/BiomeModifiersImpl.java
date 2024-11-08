@@ -5,8 +5,6 @@ import java.util.Optional;
 
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
-
-import com.mojang.serialization.Codec;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.resources.ResourceKey;

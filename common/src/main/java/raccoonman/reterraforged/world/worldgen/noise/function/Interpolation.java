@@ -1,8 +1,6 @@
 package raccoonman.reterraforged.world.worldgen.noise.function;
 
 import com.mojang.serialization.Codec;
-
-import com.mojang.serialization.Codec;
 import net.minecraft.util.StringRepresentable;
 import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil;
 

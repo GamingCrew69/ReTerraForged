@@ -1,8 +1,6 @@
 package raccoonman.reterraforged.world.worldgen.noise.domain;
 
 import com.mojang.serialization.Codec;
-
-import com.mojang.serialization.Codec;
 import raccoonman.reterraforged.platform.RegistryUtil;
 import raccoonman.reterraforged.registries.RTFBuiltInRegistries;
 import raccoonman.reterraforged.world.worldgen.noise.module.Noise;

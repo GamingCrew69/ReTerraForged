@@ -1,8 +1,6 @@
 package raccoonman.reterraforged.world.worldgen.feature.template.placement;
 
 import com.mojang.serialization.Codec;
-
-import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
 import raccoonman.reterraforged.world.worldgen.feature.template.BlockUtils;

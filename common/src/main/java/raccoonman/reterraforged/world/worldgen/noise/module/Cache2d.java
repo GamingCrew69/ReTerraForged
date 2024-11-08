@@ -1,8 +1,6 @@
 package raccoonman.reterraforged.world.worldgen.noise.module;
 
 import com.mojang.serialization.Codec;
-
-import com.mojang.serialization.Codec;
 import raccoonman.reterraforged.world.worldgen.util.PosUtil;
 
 @Deprecated

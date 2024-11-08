@@ -1,6 +1,6 @@
 package raccoonman.reterraforged.data.worldgen.preset.settings;
 
-import com.mojang.serialization.Codec;
+
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import raccoonman.reterraforged.world.worldgen.cell.continent.IslandPopulator;

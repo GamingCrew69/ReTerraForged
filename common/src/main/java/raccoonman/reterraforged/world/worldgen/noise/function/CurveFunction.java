@@ -3,8 +3,6 @@ package raccoonman.reterraforged.world.worldgen.noise.function;
 import java.util.function.Function;
 
 import com.mojang.serialization.Codec;
-
-import com.mojang.serialization.Codec;
 import raccoonman.reterraforged.registries.RTFBuiltInRegistries;
 
 public interface CurveFunction {

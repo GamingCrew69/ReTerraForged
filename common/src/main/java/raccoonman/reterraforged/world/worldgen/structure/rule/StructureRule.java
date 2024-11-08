@@ -3,8 +3,6 @@ package raccoonman.reterraforged.world.worldgen.structure.rule;
 import java.util.function.Function;
 
 import com.mojang.serialization.Codec;
-
-import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.levelgen.RandomState;
 import raccoonman.reterraforged.registries.RTFBuiltInRegistries;
