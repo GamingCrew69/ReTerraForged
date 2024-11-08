@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.MiscOverworldFeatures;
 import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
@@ -84,7 +84,7 @@ public class PresetPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> JUNGLE_TREES = createKey("jungle_trees");
 	public static final ResourceKey<PlacedFeature> JUNGLE_EDGE_TREES = createKey("jungle_edge_trees");
     
-	public static void bootstrap(Preset preset, BootstrapContext<PlacedFeature> ctx) {
+	public static void bootstrap(Preset preset, BootstapContext<PlacedFeature> ctx) {
 		HolderGetter<ConfiguredFeature<?, ?>> features = ctx.lookup(Registries.CONFIGURED_FEATURE);
 		MiscellaneousSettings miscellaneous = preset.miscellaneous();
 

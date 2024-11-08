@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.DensityFunction;
@@ -32,7 +32,7 @@ public class PresetNoiseRouterData {
 	private static final float SCALER = 128.0F;
 	private static final float UNIT = 1.0F / SCALER;
 	
-    public static void bootstrap(Preset preset, BootstrapContext<DensityFunction> ctx) {
+    public static void bootstrap(Preset preset, BootstapContext<DensityFunction> ctx) {
         HolderGetter<DensityFunction> densityFunctions = ctx.lookup(Registries.DENSITY_FUNCTION);
         HolderGetter<NormalNoise.NoiseParameters> noiseParams = ctx.lookup(Registries.NOISE);
         

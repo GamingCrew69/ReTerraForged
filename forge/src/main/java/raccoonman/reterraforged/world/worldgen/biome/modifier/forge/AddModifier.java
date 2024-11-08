@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.Codec;
@@ -21,7 +21,7 @@ import raccoonman.reterraforged.world.worldgen.biome.modifier.Filter;
 import raccoonman.reterraforged.world.worldgen.biome.modifier.Order;
 
 record AddModifier(Order order, GenerationStep.Decoration step, Optional<Filter> biomes, HolderSet<PlacedFeature> features) implements ForgeBiomeModifier {
-	public static final MapCodec<AddModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<AddModifier> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Order.CODEC.fieldOf("order").forGetter(AddModifier::order),
 		GenerationStep.Decoration.CODEC.fieldOf("step").forGetter(AddModifier::step),
 		Filter.CODEC.optionalFieldOf("biomes").forGetter(AddModifier::biomes),
@@ -51,7 +51,7 @@ record AddModifier(Order order, GenerationStep.Decoration step, Optional<Filter>
 	}
 
 	@Override
-	public MapCodec<AddModifier> codec() {
+	public Codec<AddModifier> codec() {
 		return CODEC;
 	}
 

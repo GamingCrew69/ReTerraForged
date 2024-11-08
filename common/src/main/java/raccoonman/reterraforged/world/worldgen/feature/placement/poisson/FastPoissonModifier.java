@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.BlockPos;
@@ -23,7 +22,7 @@ import raccoonman.reterraforged.world.worldgen.noise.module.Noise;
 import raccoonman.reterraforged.world.worldgen.noise.module.Noises;
 
 public class FastPoissonModifier extends PlacementModifier {
-	public static final MapCodec<FastPoissonModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<FastPoissonModifier> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Codec.INT.fieldOf("radius").forGetter((p) -> p.radius),
 		Codec.FLOAT.fieldOf("scale").forGetter((p) -> p.scale),
 		Codec.FLOAT.fieldOf("jitter").forGetter((p) -> p.jitter),

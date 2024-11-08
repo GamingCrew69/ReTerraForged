@@ -3,7 +3,7 @@ package raccoonman.reterraforged.world.worldgen.feature.placement;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.dimension.LevelStem;
@@ -39,7 +39,7 @@ public class RTFPlacementModifiers {
     	return new LegacyCountExtraModifier(count, extraChance, extraCount);
     }
     
-    private static <P extends PlacementModifier> PlacementModifierType<P> register(String name, MapCodec<P> codec) {
+    private static <P extends PlacementModifier> PlacementModifierType<P> register(String name, Codec<P> codec) {
     	PlacementModifierType<P> type = () -> codec;
 		RegistryUtil.register(BuiltInRegistries.PLACEMENT_MODIFIER_TYPE, name, type);
 		return type;

@@ -10,7 +10,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.RegistryDataLoader;
 import raccoonman.reterraforged.data.worldgen.compat.terrablender.TBNoiseRouterData;
@@ -86,6 +86,6 @@ public record Preset(WorldSettings world, SurfaceSettings surface, CaveSettings 
     }
     
 	private interface Patch<T> {
-        void apply(Preset preset, BootstrapContext<T> ctx);
+        void apply(Preset preset, BootstapContext<T> ctx);
 	}
 }

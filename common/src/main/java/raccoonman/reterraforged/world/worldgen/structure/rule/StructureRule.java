@@ -4,7 +4,7 @@ import java.util.function.Function;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.levelgen.RandomState;
 import raccoonman.reterraforged.registries.RTFBuiltInRegistries;
@@ -14,5 +14,5 @@ public interface StructureRule {
 
 	boolean test(RandomState randomState, BlockPos pos);
 	
-	MapCodec<? extends StructureRule> codec();
+	Codec<? extends StructureRule> codec();
 }

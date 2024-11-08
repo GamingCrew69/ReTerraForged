@@ -6,7 +6,6 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.util.ExtraCodecs;
@@ -17,7 +16,7 @@ import raccoonman.reterraforged.world.worldgen.noise.module.Noises;
 import raccoonman.reterraforged.world.worldgen.noise.module.Noise.Visitor;
 
 public record LinearSpline(Noise input, List<Pair<Float, Noise>> points, float minValue, float maxValue) implements Noise {
-	public static final MapCodec<LinearSpline> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<LinearSpline> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Noise.HOLDER_HELPER_CODEC.fieldOf("input").forGetter(LinearSpline::input),
 		ExtraCodecs.nonEmptyList(Codec.pair(Codec.FLOAT, Noise.HOLDER_HELPER_CODEC).listOf()).fieldOf("points").forGetter(LinearSpline::points)
 	).apply(instance, LinearSpline::new));
@@ -64,7 +63,7 @@ public record LinearSpline(Noise input, List<Pair<Float, Noise>> points, float m
 	}
 
 	@Override
-	public MapCodec<LinearSpline> codec() {
+	public Codec<LinearSpline> codec() {
 		return CODEC;
 	}
 

@@ -2,7 +2,7 @@ package raccoonman.reterraforged.world.worldgen.feature.placement.poisson;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil;
 import raccoonman.reterraforged.world.worldgen.noise.module.Noise;
 
@@ -46,7 +46,7 @@ public class DensityNoise implements Noise {
 	}
 
 	@Override
-	public MapCodec<DensityNoise> codec() {
+	public Codec<DensityNoise> codec() {
 		throw new UnsupportedOperationException();
 	}
 }

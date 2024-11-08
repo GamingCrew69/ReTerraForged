@@ -3,7 +3,7 @@ package raccoonman.reterraforged.world.worldgen.structure.rule;
 import java.util.List;
 import java.util.Set;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.ImmutableSet;
@@ -20,7 +20,7 @@ import raccoonman.reterraforged.world.worldgen.cell.terrain.Terrain;
 import raccoonman.reterraforged.world.worldgen.cell.terrain.TerrainType;
 
 record CellTest(float cutoff, Set<Terrain> terrainTypeBlacklist) implements StructureRule {
-	public static final MapCodec<CellTest> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<CellTest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Codec.FLOAT.fieldOf("cutoff").forGetter(CellTest::cutoff),
 		Codec.STRING.xmap(TerrainType::get, Terrain::getName).listOf().fieldOf("terrain_type_blacklist").forGetter((set) -> set.terrainTypeBlacklist().stream().toList())
 	).apply(instance, CellTest::new));
@@ -49,7 +49,7 @@ record CellTest(float cutoff, Set<Terrain> terrainTypeBlacklist) implements Stru
 	}
 
 	@Override
-	public MapCodec<CellTest> codec() {
+	public Codec<CellTest> codec() {
 		return CODEC;
 	}
 }

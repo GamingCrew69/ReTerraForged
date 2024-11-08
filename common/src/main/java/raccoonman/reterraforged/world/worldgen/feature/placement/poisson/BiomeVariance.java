@@ -26,7 +26,7 @@ package raccoonman.reterraforged.world.worldgen.feature.placement.poisson;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import raccoonman.reterraforged.world.worldgen.cell.Cell;
 import raccoonman.reterraforged.world.worldgen.densityfunction.tile.Tile;
 import raccoonman.reterraforged.world.worldgen.noise.module.Noise;
@@ -94,7 +94,7 @@ public class BiomeVariance implements Noise {
 	}
 
 	@Override
-	public MapCodec<BiomeVariance> codec() {
+	public Codec<BiomeVariance> codec() {
 		throw new UnsupportedOperationException();
 	}
 }

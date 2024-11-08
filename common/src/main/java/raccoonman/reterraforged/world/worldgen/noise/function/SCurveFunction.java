@@ -1,13 +1,12 @@
 package raccoonman.reterraforged.world.worldgen.noise.function;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil;
 
 record SCurveFunction(float lower, float upper) implements CurveFunction {
-	public static final MapCodec<SCurveFunction> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<SCurveFunction> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Codec.FLOAT.fieldOf("lower").forGetter(SCurveFunction::lower),
 		Codec.FLOAT.fieldOf("upper").forGetter(SCurveFunction::upper)
 	).apply(instance, SCurveFunction::new));
@@ -22,7 +21,7 @@ record SCurveFunction(float lower, float upper) implements CurveFunction {
 	}
 
 	@Override
-	public MapCodec<SCurveFunction> codec() {
+	public Codec<SCurveFunction> codec() {
 		return CODEC;
 	}
 }

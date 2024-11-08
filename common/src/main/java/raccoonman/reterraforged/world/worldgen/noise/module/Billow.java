@@ -1,14 +1,13 @@
 package raccoonman.reterraforged.world.worldgen.noise.module;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil;
 import raccoonman.reterraforged.world.worldgen.noise.function.Interpolation;
 
 record Billow(float frequency, int octaves, float lacunarity, float gain, Interpolation interpolation, float[] spectralWeights, float min, float max) implements Noise {
-	public static final MapCodec<Billow> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<Billow> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Codec.FLOAT.fieldOf("frequency").forGetter(Billow::frequency),
 		Codec.INT.fieldOf("octaves").forGetter(Billow::octaves),
 		Codec.FLOAT.fieldOf("lacunarity").forGetter(Billow::lacunarity),
@@ -66,7 +65,7 @@ record Billow(float frequency, int octaves, float lacunarity, float gain, Interp
 	}
 
 	@Override
-	public MapCodec<Billow> codec() {
+	public Codec<Billow> codec() {
 		return CODEC;
 	}
 	

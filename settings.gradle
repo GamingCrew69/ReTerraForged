@@ -7,5 +7,5 @@ pluginManagement {
     }
 }
 
-include("common", "fabric")
+include("common", "fabric", "forge")
 rootProject.name = "ReTerraForged"

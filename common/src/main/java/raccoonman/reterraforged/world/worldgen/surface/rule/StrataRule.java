@@ -3,7 +3,7 @@ package raccoonman.reterraforged.world.worldgen.surface.rule;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.ImmutableList;
@@ -29,7 +29,7 @@ import raccoonman.reterraforged.world.worldgen.noise.module.Noises;
 import raccoonman.reterraforged.world.worldgen.surface.RTFSurfaceSystem;
 
 public record StrataRule(ResourceLocation name, Holder<Noise> selector, List<Strata> strata, int iterations) implements SurfaceRules.RuleSource {
-	public static final MapCodec<StrataRule> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<StrataRule> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		ResourceLocation.CODEC.fieldOf("name").forGetter(StrataRule::name),
 		Noise.CODEC.fieldOf("selector").forGetter(StrataRule::selector),
 		Strata.CODEC.listOf().fieldOf("strata").forGetter(StrataRule::strata),

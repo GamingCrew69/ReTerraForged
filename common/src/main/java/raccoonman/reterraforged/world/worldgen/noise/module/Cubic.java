@@ -1,13 +1,12 @@
 package raccoonman.reterraforged.world.worldgen.noise.module;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil;
 
 public record Cubic(float frequency, int octaves, float lacunarity, float gain, float minValue, float maxValue) implements Noise {
-	public static final MapCodec<Cubic> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<Cubic> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Codec.FLOAT.fieldOf("frequency").forGetter(Cubic::frequency),
 		Codec.INT.fieldOf("octaves").forGetter(Cubic::octaves),
 		Codec.FLOAT.fieldOf("lacunarity").forGetter(Cubic::lacunarity),
@@ -41,7 +40,7 @@ public record Cubic(float frequency, int octaves, float lacunarity, float gain, 
 	}
 
 	@Override
-	public MapCodec<Cubic> codec() {
+	public Codec<Cubic> codec() {
 		return CODEC;
 	}
 	

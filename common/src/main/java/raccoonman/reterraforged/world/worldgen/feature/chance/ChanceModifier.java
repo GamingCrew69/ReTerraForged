@@ -4,7 +4,7 @@ import java.util.function.Function;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import raccoonman.reterraforged.registries.RTFBuiltInRegistries;
 
@@ -13,5 +13,5 @@ public interface ChanceModifier {
 	
 	float getChance(ChanceContext chanceCtx, FeaturePlaceContext<?> placeCtx);
 	
-	MapCodec<? extends ChanceModifier> codec();
+	Codec<? extends ChanceModifier> codec();
 }

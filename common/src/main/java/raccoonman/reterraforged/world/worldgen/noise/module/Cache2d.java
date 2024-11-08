@@ -2,12 +2,12 @@ package raccoonman.reterraforged.world.worldgen.noise.module;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import raccoonman.reterraforged.world.worldgen.util.PosUtil;
 
 @Deprecated
 public record Cache2d(Noise noise, ThreadLocal<Cached> cache) implements Noise {
-	public static final MapCodec<Cache2d> CODEC = Noise.HOLDER_HELPER_CODEC.xmap(Cache2d::new, Cache2d::noise).fieldOf("value");
+	public static final Codec<Cache2d> CODEC = Noise.HOLDER_HELPER_CODEC.xmap(Cache2d::new, Cache2d::noise);
 	
 	public Cache2d(Noise noise) {
 		this(noise, ThreadLocal.withInitial(() -> {
@@ -41,7 +41,7 @@ public record Cache2d(Noise noise, ThreadLocal<Cached> cache) implements Noise {
 	}
 
 	@Override
-	public MapCodec<Cache2d> codec() {
+	public Codec<Cache2d> codec() {
 		return CODEC;
 	}
 	
@@ -80,7 +80,7 @@ public record Cache2d(Noise noise, ThreadLocal<Cached> cache) implements Noise {
 		}
 
 		@Override
-		public MapCodec<Cached> codec() {
+		public Codec<Cached> codec() {
 			throw new UnsupportedOperationException();
 		}
 	}

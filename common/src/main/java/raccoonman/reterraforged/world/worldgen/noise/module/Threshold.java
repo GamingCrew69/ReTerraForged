@@ -1,11 +1,10 @@
 package raccoonman.reterraforged.world.worldgen.noise.module;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 public record Threshold(Noise input, Noise lower, Noise upper, Noise threshold) implements Noise {
-	public static final MapCodec<Threshold> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<Threshold> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Noise.HOLDER_HELPER_CODEC.fieldOf("input").forGetter(Threshold::input),
 		Noise.HOLDER_HELPER_CODEC.fieldOf("lower").forGetter(Threshold::lower),
 		Noise.HOLDER_HELPER_CODEC.fieldOf("upper").forGetter(Threshold::upper),
@@ -37,7 +36,7 @@ public record Threshold(Noise input, Noise lower, Noise upper, Noise threshold) 
 	}
 
 	@Override
-	public MapCodec<Threshold> codec() {
+	public Codec<Threshold> codec() {
 		return CODEC;
 	}
 }

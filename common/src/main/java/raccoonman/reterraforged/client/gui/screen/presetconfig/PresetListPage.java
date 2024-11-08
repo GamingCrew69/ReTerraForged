@@ -18,7 +18,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonWriter;
 import com.mojang.serialization.DataResult;
-import com.mojang.serialization.DataResult.Error;
+import com.mojang.serialization.DataResult.PartialResult;
 import com.mojang.serialization.JsonOps;
 
 import io.netty.util.internal.StringUtil;
@@ -218,7 +218,7 @@ class PresetListPage extends BisectedPage<PresetConfigScreen, PresetEntry, Abstr
 				try(Reader reader = Files.newBufferedReader(presetPath)) {
 					String base = FileNameUtils.getBaseName(presetPath.toString());
 					DataResult<Preset> result = Preset.DIRECT_CODEC.parse(JsonOps.INSTANCE, JsonParser.parseReader(reader));
-					Optional<Error<Preset>> error = result.error();
+					Optional<PartialResult<Preset>> error = result.error();
 					if(error.isPresent()) {
 						RTFCommon.LOGGER.error(error.get().message());
 						continue;

@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.Lifecycle;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import net.minecraft.core.RegistrationInfo;
 import net.minecraft.core.Registry;
 import net.minecraft.core.WritableRegistry;
 import net.minecraft.resources.ResourceKey;
@@ -15,7 +14,7 @@ import raccoonman.reterraforged.world.worldgen.biome.modifier.BiomeModifier;
 public final class RegistryUtil {
 	
 	public static <T> void register(Registry<T> registry, String name, T value) {
-		getWritable(registry).register(RTFRegistries.createKey(registry.key(), name), value, RegistrationInfo.BUILT_IN);
+		getWritable(registry).register(RTFRegistries.createKey(registry.key(), name), value, Lifecycle.stable());
 	}
 	
 	@ExpectPlatform

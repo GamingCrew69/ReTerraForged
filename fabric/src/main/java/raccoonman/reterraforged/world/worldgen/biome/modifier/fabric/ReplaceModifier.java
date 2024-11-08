@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModificationContext;
@@ -21,7 +21,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 record ReplaceModifier(GenerationStep.Decoration step, Optional<HolderSet<Biome>> biomes, Map<ResourceKey<PlacedFeature>, Holder<PlacedFeature>> replacements) implements FabricBiomeModifier {
-	public static final MapCodec<ReplaceModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<ReplaceModifier> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		GenerationStep.Decoration.CODEC.fieldOf("step").forGetter(ReplaceModifier::step),
 		Biome.LIST_CODEC.optionalFieldOf("biomes").forGetter(ReplaceModifier::biomes),
 		Codec.unboundedMap(ResourceKey.codec(Registries.PLACED_FEATURE), PlacedFeature.CODEC).fieldOf("replacements").forGetter(ReplaceModifier::replacements)
@@ -55,7 +55,7 @@ record ReplaceModifier(GenerationStep.Decoration step, Optional<HolderSet<Biome>
 	}
 
 	@Override
-	public MapCodec<ReplaceModifier> codec() {
+	public Codec<ReplaceModifier> codec() {
 		return CODEC;
 	}
 }

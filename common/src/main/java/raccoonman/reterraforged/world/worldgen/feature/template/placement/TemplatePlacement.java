@@ -4,7 +4,7 @@ import java.util.function.Function;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
 import raccoonman.reterraforged.registries.RTFBuiltInRegistries;
@@ -20,5 +20,5 @@ public interface TemplatePlacement<T extends TemplateContext> {
     
     T createContext();
     
-    MapCodec<? extends TemplatePlacement<T>> codec();
+    Codec<? extends TemplatePlacement<T>> codec();
 }

@@ -1,14 +1,13 @@
 package raccoonman.reterraforged.world.worldgen.noise.module;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil;
 import raccoonman.reterraforged.world.worldgen.noise.function.CurveFunction;
 
 public record Steps(Noise input, Noise steps, Noise slopeMin, Noise slopeMax, CurveFunction slopeCurve) implements Noise {
-	public static final MapCodec<Steps> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<Steps> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Noise.HOLDER_HELPER_CODEC.fieldOf("input").forGetter(Steps::input),
 		Noise.HOLDER_HELPER_CODEC.fieldOf("steps").forGetter(Steps::steps),
 		Noise.HOLDER_HELPER_CODEC.fieldOf("slope_min").forGetter(Steps::slopeMin),
@@ -49,7 +48,7 @@ public record Steps(Noise input, Noise steps, Noise slopeMin, Noise slopeMax, Cu
 	}
 
 	@Override
-	public MapCodec<Steps> codec() {
+	public Codec<Steps> codec() {
 		return CODEC;
 	}
 }

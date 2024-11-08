@@ -2,7 +2,7 @@ package raccoonman.reterraforged.world.worldgen.feature.template.placement;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
 import raccoonman.reterraforged.world.worldgen.feature.template.BlockUtils;
@@ -10,7 +10,7 @@ import raccoonman.reterraforged.world.worldgen.feature.template.decorator.TreeCo
 import raccoonman.reterraforged.world.worldgen.feature.template.template.Dimensions;
 
 record TreePlacement() implements TemplatePlacement<TreeContext> {
-	public static final MapCodec<TreePlacement> CODEC = MapCodec.unit(TreePlacement::new);
+	public static final Codec<TreePlacement> CODEC = Codec.unit(TreePlacement::new);
 	
     @Override
     public boolean canPlaceAt(LevelAccessor world, BlockPos pos, Dimensions dimensions) {
@@ -28,7 +28,7 @@ record TreePlacement() implements TemplatePlacement<TreeContext> {
 	}
 
 	@Override
-	public MapCodec<TreePlacement> codec() {
+	public Codec<TreePlacement> codec() {
 		return CODEC;
 	}
 }

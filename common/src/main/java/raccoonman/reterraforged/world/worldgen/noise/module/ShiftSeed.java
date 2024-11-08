@@ -1,11 +1,10 @@
 package raccoonman.reterraforged.world.worldgen.noise.module;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 record ShiftSeed(Noise input, int shift) implements Noise {
-	public static final MapCodec<ShiftSeed> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<ShiftSeed> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Noise.HOLDER_HELPER_CODEC.fieldOf("input").forGetter(ShiftSeed::input),
 		Codec.INT.fieldOf("shift").forGetter(ShiftSeed::shift)
 	).apply(instance, ShiftSeed::new));
@@ -32,7 +31,7 @@ record ShiftSeed(Noise input, int shift) implements Noise {
 	}
 	
 	@Override
-	public MapCodec<ShiftSeed> codec() {
+	public Codec<ShiftSeed> codec() {
 		return CODEC;
 	}
 }

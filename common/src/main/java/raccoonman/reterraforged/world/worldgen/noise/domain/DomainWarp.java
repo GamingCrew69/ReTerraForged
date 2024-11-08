@@ -1,7 +1,6 @@
 package raccoonman.reterraforged.world.worldgen.noise.domain;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import raccoonman.reterraforged.world.worldgen.noise.module.Noise;
@@ -9,7 +8,7 @@ import raccoonman.reterraforged.world.worldgen.noise.module.Noise.Visitor;
 import raccoonman.reterraforged.world.worldgen.noise.module.Noises;
 
 record DomainWarp(Noise x, Noise z, Noise mappedX, Noise mappedZ, Noise distance) implements Domain {
-	public static final MapCodec<DomainWarp> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<DomainWarp> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Noise.HOLDER_HELPER_CODEC.fieldOf("x").forGetter(DomainWarp::x),
 		Noise.HOLDER_HELPER_CODEC.fieldOf("z").forGetter(DomainWarp::z),
 		Noise.HOLDER_HELPER_CODEC.fieldOf("distance").forGetter(DomainWarp::distance)
@@ -35,7 +34,7 @@ record DomainWarp(Noise x, Noise z, Noise mappedX, Noise mappedZ, Noise distance
 	}
 
 	@Override
-	public MapCodec<DomainWarp> codec() {
+	public Codec<DomainWarp> codec() {
 		return CODEC;
 	}
 	

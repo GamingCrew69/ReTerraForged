@@ -1,7 +1,6 @@
 package raccoonman.reterraforged.world.worldgen.densityfunction;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.Holder;
@@ -27,7 +26,7 @@ public record NoiseFunction(Holder<Noise> noise, int seed) implements MarkerFunc
 	}
 	
 	public record Marker(Holder<Noise> noise) implements MarkerFunction {
-		public static final MapCodec<Marker> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+		public static final Codec<Marker> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 			Noise.CODEC.fieldOf("noise").forGetter(NoiseFunction.Marker::noise)
 		).apply(instance, NoiseFunction.Marker::new));
 

@@ -3,14 +3,13 @@ package raccoonman.reterraforged.world.worldgen.densityfunction;
 import java.util.Arrays;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.world.level.levelgen.DensityFunction;
 
 public record ConditionalFlatCache(DensityFunction function) implements MarkerFunction {
-	public static final MapCodec<ConditionalFlatCache> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<ConditionalFlatCache> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		DensityFunction.HOLDER_HELPER_CODEC.fieldOf("function").forGetter(ConditionalFlatCache::function)
 	).apply(instance, ConditionalFlatCache::new));
 

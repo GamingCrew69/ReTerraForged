@@ -4,7 +4,6 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.BlockPos;
@@ -12,7 +11,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 
 record TreeDecorator(net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator decorator, net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator modifiedDecorator) implements TemplateDecorator<TreeContext> {
-	public static final MapCodec<TreeDecorator> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<TreeDecorator> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator.CODEC.fieldOf("decorator").forGetter(TreeDecorator::decorator),
 		net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator.CODEC.fieldOf("modified_decorator").forGetter(TreeDecorator::modifiedDecorator)
 	).apply(instance, TreeDecorator::new));
@@ -43,7 +42,7 @@ record TreeDecorator(net.minecraft.world.level.levelgen.feature.treedecorators.T
     }
 
 	@Override
-	public MapCodec<TreeDecorator> codec() {
+	public Codec<TreeDecorator> codec() {
 		return CODEC;
 	}
 }

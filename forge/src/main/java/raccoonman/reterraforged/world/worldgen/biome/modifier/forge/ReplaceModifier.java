@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.Codec;
@@ -22,7 +22,7 @@ import net.minecraftforge.common.world.ModifiableBiomeInfo.BiomeInfo;
 import raccoonman.reterraforged.forge.mixin.MixinBiomeGenerationSettingsPlainsBuilder;
 
 record ReplaceModifier(GenerationStep.Decoration step, Optional<HolderSet<Biome>> biomes, Map<ResourceKey<PlacedFeature>, Holder<PlacedFeature>> replacements) implements ForgeBiomeModifier {
-	public static final MapCodec<ReplaceModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<ReplaceModifier> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		GenerationStep.Decoration.CODEC.fieldOf("step").forGetter(ReplaceModifier::step),
 		Biome.LIST_CODEC.optionalFieldOf("biomes").forGetter(ReplaceModifier::biomes),
 		Codec.unboundedMap(ResourceKey.codec(Registries.PLACED_FEATURE), PlacedFeature.CODEC).fieldOf("replacements").forGetter(ReplaceModifier::replacements)
@@ -53,7 +53,7 @@ record ReplaceModifier(GenerationStep.Decoration step, Optional<HolderSet<Biome>
 	}
 
 	@Override
-	public MapCodec<ReplaceModifier> codec() {
+	public Codec<ReplaceModifier> codec() {
 		return CODEC;
 	}
 }

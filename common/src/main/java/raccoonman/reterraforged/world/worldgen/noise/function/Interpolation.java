@@ -2,7 +2,7 @@ package raccoonman.reterraforged.world.worldgen.noise.function;
 
 import com.mojang.serialization.Codec;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.StringRepresentable;
 import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil;
 
@@ -29,7 +29,7 @@ public enum Interpolation implements CurveFunction, StringRepresentable {
         }
     };
 	
-	public static final MapCodec<Interpolation> CODEC = StringRepresentable.fromEnum(Interpolation::values).fieldOf("value");;
+	public static final Codec<Interpolation> CODEC = StringRepresentable.fromEnum(Interpolation::values);;
 	
 	private String name;
 	
@@ -43,7 +43,7 @@ public enum Interpolation implements CurveFunction, StringRepresentable {
 	}
 	
 	@Override
-	public MapCodec<Interpolation> codec()	{
+	public Codec<Interpolation> codec()	{
 		return CODEC;
 	}
 }

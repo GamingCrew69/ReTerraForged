@@ -2,7 +2,7 @@ package raccoonman.reterraforged.data.worldgen.preset;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
@@ -32,7 +32,7 @@ public final class PresetBiomeData {
     public static final ResourceKey<Biome> TAIGA_SCRUB = createKey("taiga_scrub");
     public static final ResourceKey<Biome> WARM_BEACH = createKey("warm_beach");
 	
-	public static void bootstrap(Preset preset, BootstrapContext<Biome> ctx) {
+	public static void bootstrap(Preset preset, BootstapContext<Biome> ctx) {
 		MiscellaneousSettings miscellaneousSettings = preset.miscellaneous();
 		
 		if(miscellaneousSettings.customBiomeFeatures) {

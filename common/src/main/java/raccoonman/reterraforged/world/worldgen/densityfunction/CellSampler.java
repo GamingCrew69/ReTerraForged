@@ -2,7 +2,7 @@ package raccoonman.reterraforged.world.worldgen.densityfunction;
 
 import java.util.function.Supplier;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.KeyDispatchCodec;
 import org.jetbrains.annotations.Nullable;
 
@@ -100,7 +100,7 @@ public record CellSampler(Supplier<WorldLookup> deferredLookup, Field field) imp
 	}
 	
 	public record Marker(Field field) implements MarkerFunction {
-		public static final MapCodec<Marker> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+		public static final Codec<Marker> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 			Field.CODEC.fieldOf("field").forGetter(Marker::field)
 		).apply(instance, Marker::new));
 		

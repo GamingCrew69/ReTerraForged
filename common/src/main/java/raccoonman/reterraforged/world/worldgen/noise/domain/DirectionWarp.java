@@ -1,7 +1,6 @@
 package raccoonman.reterraforged.world.worldgen.noise.domain;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil;
@@ -9,7 +8,7 @@ import raccoonman.reterraforged.world.worldgen.noise.module.Noise;
 import raccoonman.reterraforged.world.worldgen.noise.module.Noise.Visitor;
 
 record DirectionWarp(Noise direction, Noise strength) implements Domain {
-	public static final MapCodec<DirectionWarp> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<DirectionWarp> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Noise.HOLDER_HELPER_CODEC.fieldOf("direction").forGetter(DirectionWarp::direction),
 		Noise.HOLDER_HELPER_CODEC.fieldOf("strength").forGetter(DirectionWarp::strength)
 	).apply(instance, DirectionWarp::new));
@@ -32,7 +31,7 @@ record DirectionWarp(Noise direction, Noise strength) implements Domain {
 	}
 
 	@Override
-	public MapCodec<DirectionWarp> codec() {
+	public Codec<DirectionWarp> codec() {
 		return CODEC;
 	}
 }

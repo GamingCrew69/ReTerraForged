@@ -1,11 +1,10 @@
 package raccoonman.reterraforged.world.worldgen.noise.module;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 record Map(Noise alpha, Noise from, Noise to) implements Noise {
-	public static final MapCodec<Map> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final Codec<Map> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Noise.HOLDER_HELPER_CODEC.fieldOf("alpha").forGetter(Map::alpha),
 		Noise.HOLDER_HELPER_CODEC.fieldOf("from").forGetter(Map::from),
 		Noise.HOLDER_HELPER_CODEC.fieldOf("to").forGetter(Map::to)
@@ -39,7 +38,7 @@ record Map(Noise alpha, Noise from, Noise to) implements Noise {
 	}
 
 	@Override
-	public MapCodec<Map> codec() {
+	public Codec<Map> codec() {
 		return CODEC;
 	}
 }
