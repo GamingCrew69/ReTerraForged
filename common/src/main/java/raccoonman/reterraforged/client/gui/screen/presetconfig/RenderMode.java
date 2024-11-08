@@ -2,11 +2,9 @@ package raccoonman.reterraforged.client.gui.screen.presetconfig;
 
 import java.awt.Color;
 
-import raccoonman.reterraforged.data.worldgen.preset.settings.WorldSettings;
 import raccoonman.reterraforged.world.worldgen.cell.Cell;
 import raccoonman.reterraforged.world.worldgen.cell.heightmap.Levels;
 import raccoonman.reterraforged.world.worldgen.noise.NoiseUtil;
-import raccoonman.reterraforged.data.worldgen.preset.settings.Preset;
 
 public enum RenderMode {
     BIOME_TYPE {
@@ -114,8 +112,7 @@ public enum RenderMode {
         }
         float bands = 10.0F;
         float alpha = 0.2F;
-        //WorldSettings worldSettings = Preset.world();
-        float elevation = (cell.height - levels.water) / ((1.0F - levels.water) * 2); //* (256/worldSettings.properties.worldHeight));
+        float elevation = (cell.height - levels.water) / ((1.0F - levels.water) * 2);
         int band = NoiseUtil.round(elevation * bands);
         float scale = 1.0F - alpha;
         float bias = alpha * (band / bands);
