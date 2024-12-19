@@ -47,7 +47,7 @@ public class BlockUtils {
     public static boolean isClearOverhead(LevelAccessor world, BlockPos pos, int height, BiPredicate<LevelAccessor, BlockPos> predicate) {
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         // world.getMaxHeight ?
-        int max = Math.min(world.getMaxBuildHeight() - 1, pos.getY() + height);
+        int max = Math.min(world.getMaxY() - 1, pos.getY() + height);
         for (int y = pos.getY(); y < max; y++) {
             mutable.set(pos.getX(), y, pos.getZ());
             if (!predicate.test(world, mutable)) {

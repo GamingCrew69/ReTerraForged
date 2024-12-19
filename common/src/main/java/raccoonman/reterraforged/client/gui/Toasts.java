@@ -10,7 +10,7 @@ public final class Toasts {
 
 	public static void notify(String message, Component description, SystemToastId id) {
 		Minecraft mc = Minecraft.getInstance();
-		SystemToast.add(mc.getToasts(), id, Component.translatable(message), description);
+		SystemToast.add(mc.getToastManager(), id, Component.translatable(message), description);
 	}
 	
 	public static void tryOrToast(String errorMessage, ThrowingRunnable r) {
