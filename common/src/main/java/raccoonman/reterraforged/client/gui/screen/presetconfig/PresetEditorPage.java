@@ -202,7 +202,7 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 	    }
 	    
 	    private int rgbaToABGR(int rgba) {
-	    	return (rgba & 0xFF) << 24 | (rgba & 0xFF0000) >> 16 | (rgba & 0xFF00) | (rgba & 0xFF) << 16;
+	    	return (0xFF) << 24 | (rgba & 0xFF0000) >> 16 | (rgba & 0xFF00) | (rgba & 0xFF) << 16;
 	    }
 	    
 	    public void close() throws Exception {
