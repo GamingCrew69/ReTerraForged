@@ -269,13 +269,13 @@ public class FeatureTemplate {
         BlockState state2 = world.getBlockState(pos2);
 
         // update state at pos1 - the input position
-        BlockState result1 = state1.updateShape(direction, state2, world, pos1, pos2);
+        BlockState result1 = state1.updateShape(world, world, pos1, direction, pos2, state2, world.getRandom());
         if (result1 != state1) {
         	setter.setBlock(pos1, result1, PASTE_FLAG);
         }
 
         // update state at pos2 - the neighbour
-        BlockState result2 = state2.updateShape(direction.getOpposite(), result1, world, pos2, pos1);
+        BlockState result2 = state2.updateShape(world, world, pos2, direction.getOpposite(), pos1, result1, world.getRandom());
         if (result2 != state2) {
         	setter.setBlock(pos2, result2, PASTE_FLAG);
         }
@@ -321,7 +321,7 @@ public class FeatureTemplate {
         BlockState[] palette = new BlockState[list.size()];
         for (int i = 0; i < list.size(); i++) {
             try {
-                palette[i] = NbtUtils.readBlockState(BuiltInRegistries.BLOCK.asLookup(), list.getCompound(i));
+                palette[i] = NbtUtils.readBlockState(BuiltInRegistries.BLOCK, list.getCompound(i));
             } catch (Throwable t) {
                 palette[i] = Blocks.AIR.defaultBlockState();
             }

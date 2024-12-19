@@ -18,6 +18,7 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.screens.worldselection.WorldCreationContext;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
@@ -123,7 +124,7 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 	    public static final int SIZE = (1 << 4) << FACTOR;
 	    private static final float[] LEGEND_SCALES = { 1, 0.9F, 0.75F, 0.6F };
 	    private DynamicTexture texture = new DynamicTexture(new NativeImage(SIZE, SIZE, false));
-	    private ResourceLocation textureId = Minecraft.getInstance().getTextureManager().register(RTFCommon.MOD_ID + "-preview-framebuffer", this.texture); 
+	    private ResourceLocation textureId = ResourceLocation.withDefaultNamespace(RTFCommon.MOD_ID + "-preview-framebuffer"); 
 	    private Tile tile;
 	    private int centerX, centerZ;
 	    
@@ -146,6 +147,8 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 			        }
 	        	}
 	        }, DEFAULT_NARRATION);
+
+            Minecraft.getInstance().getTextureManager().register(this.textureId, this.texture);
 	    }
 
 	    public void regenerate() {
@@ -190,12 +193,16 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 	        NativeImage pixels = this.texture.getPixels();
 	        this.tile.iterate((cell, x, z) -> {
 	            if (x < stroke || z < stroke || x >= width - stroke || z >= width - stroke) {
-	                pixels.setPixelRGBA(x, z, Color.BLACK.getRGB());
+	                pixels.setPixel(x, z, rgbaToABGR(Color.BLACK.getRGB()));
 	            } else {
-	                pixels.setPixelRGBA(x, z, renderMode.getColor(cell, levels));
+	                pixels.setPixel(x, z, rgbaToABGR(renderMode.getColor(cell, levels)));
 	            }
 	        });
 	        this.texture.upload();
+	    }
+	    
+	    private int rgbaToABGR(int rgba) {
+	    	return (rgba & 0xFF) << 24 | (rgba & 0xFF0000) >> 16 | (rgba & 0xFF00) | (rgba & 0xFF) << 16;
 	    }
 	    
 	    public void close() throws Exception {
@@ -216,7 +223,7 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 	        RenderSystem.enableBlend();
 	        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 	        RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-	    	guiGraphics.blit(this.textureId, x, y, 0, 0, this.width, this.height, this.width, this.height);
+	    	guiGraphics.blit(RenderType::guiTextured, this.textureId, x, y, 0, 0, this.width, this.height, this.width, this.height);
 
 	    	this.updateLegend(mx, my);
 

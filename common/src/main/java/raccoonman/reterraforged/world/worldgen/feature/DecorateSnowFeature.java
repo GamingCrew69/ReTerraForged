@@ -76,7 +76,7 @@ public class DecorateSnowFeature extends Feature<Config> {
 				        pos.set(worldX, surfaceY, worldZ);
 				        
 				        if(config.erode) {
-				        	if(level.getBiome(pos).value().getTemperature(pos) <= 0.25) {
+				        	if(level.getBiome(pos).value().getBaseTemperature() <= 0.25) {
 					            float var = -ColumnDecorator.sampleNoise(worldX, worldZ, 16, 0);
 					            float hNoise = rand.compute(worldX, worldZ, 4) * erodeConfig.heightModifier();
 					            float sNoise = rand.compute(worldX, worldZ, 5) * erodeConfig.slopeModifier();
