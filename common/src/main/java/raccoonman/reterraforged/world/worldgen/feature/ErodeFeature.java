@@ -130,7 +130,7 @@ public class ErodeFeature extends Feature<Config> {
             }
 
             for (int dy = 0; dy < 4; dy++) {
-                chunk.setBlockState(pos.setY(surfaceY - dy), state, false);
+                chunk.setBlockState(pos.setY(surfaceY - dy), state);
             }
         }
 	}

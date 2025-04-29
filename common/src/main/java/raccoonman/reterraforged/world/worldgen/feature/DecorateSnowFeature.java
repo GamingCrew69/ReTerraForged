@@ -126,13 +126,13 @@ public class DecorateSnowFeature extends Feature<Config> {
     }
 
     private static void erodeSnow(ChunkAccess chunk, BlockPos.MutableBlockPos pos) {
-        chunk.setBlockState(pos, Blocks.AIR.defaultBlockState(), false);
+        chunk.setBlockState(pos, Blocks.AIR.defaultBlockState());
 
         if (pos.getY() > 0) {
             pos.setY(pos.getY() - 1);
             BlockState below = chunk.getBlockState(pos);
             if (below.hasProperty(GrassBlock.SNOWY)) {
-                chunk.setBlockState(pos, below.setValue(GrassBlock.SNOWY, false), false);
+                chunk.setBlockState(pos, below.setValue(GrassBlock.SNOWY, false));
             }
         }
     }
@@ -146,7 +146,7 @@ public class DecorateSnowFeature extends Feature<Config> {
             if (layer.is(Blocks.AIR)) {
                 return;
             }
-            chunk.setBlockState(pos, layer, false);
+            chunk.setBlockState(pos, layer);
 
            fixBaseBlock(chunk, pos, layer, level);
         }
@@ -160,7 +160,7 @@ public class DecorateSnowFeature extends Feature<Config> {
             // Turns to dirt if submerged or the light-level is low. Light hasn't been calc'd at this
             // at this stage of world-gen so just blanket set everything to snowy dirt.
             if (below.getBlock() instanceof SpreadingSnowyDirtBlock) {
-                chunk.setBlockState(pos1, Blocks.DIRT.defaultBlockState(), false);
+                chunk.setBlockState(pos1, Blocks.DIRT.defaultBlockState());
             }
         }
     }

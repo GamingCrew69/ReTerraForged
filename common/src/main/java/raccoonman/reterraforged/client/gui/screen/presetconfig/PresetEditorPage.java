@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.NativeImage;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.Minecraft;
@@ -123,7 +121,7 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 	    private static final int FACTOR = 4;
 	    public static final int SIZE = (1 << 4) << FACTOR;
 	    private static final float[] LEGEND_SCALES = { 1, 0.9F, 0.75F, 0.6F };
-	    private DynamicTexture texture = new DynamicTexture(new NativeImage(SIZE, SIZE, false));
+	    private DynamicTexture texture = new DynamicTexture(() -> RTFCommon.MOD_ID + "-preview-framebuffer",new NativeImage(SIZE, SIZE, false));
 	    private ResourceLocation textureId = ResourceLocation.withDefaultNamespace(RTFCommon.MOD_ID + "-preview-framebuffer"); 
 	    private Tile tile;
 	    private int centerX, centerZ;
@@ -220,9 +218,6 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 	    	int y = this.getY();
 	    	
 	    	this.height = this.getWidth();
-	        RenderSystem.enableBlend();
-	        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-	        RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 	    	guiGraphics.blit(RenderType::guiTextured, this.textureId, x, y, 0, 0, this.width, this.height, this.width, this.height);
 
 	    	this.updateLegend(mx, my);

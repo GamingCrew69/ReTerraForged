@@ -307,8 +307,8 @@ public class FeatureTemplate {
             if (!root.contains("palette") || !root.contains("blocks")) {
                 return Optional.empty();
             }
-            BlockState[] palette = readPalette(root.getList("palette", 10));
-            BlockInfo[] blockInfos = readBlocks(root.getList("blocks", 10), palette);
+            BlockState[] palette = readPalette(root.getListOrEmpty("palette"));
+            BlockInfo[] blockInfos = readBlocks(root.getListOrEmpty("blocks"), palette);
             List<BlockInfo> blocks = relativize(blockInfos);
             return Optional.of(new FeatureTemplate(blocks));
         } catch (IOException e) {
@@ -321,7 +321,7 @@ public class FeatureTemplate {
         BlockState[] palette = new BlockState[list.size()];
         for (int i = 0; i < list.size(); i++) {
             try {
-                palette[i] = NbtUtils.readBlockState(BuiltInRegistries.BLOCK, list.getCompound(i));
+                palette[i] = NbtUtils.readBlockState(BuiltInRegistries.BLOCK, list.getCompound(i).orElseThrow());
             } catch (Throwable t) {
                 palette[i] = Blocks.AIR.defaultBlockState();
             }
@@ -332,9 +332,9 @@ public class FeatureTemplate {
     private static BlockInfo[] readBlocks(ListTag list, BlockState[] palette) {
         BlockInfo[] blocks = new BlockInfo[list.size()];
         for (int i = 0; i < list.size(); i++) {
-            CompoundTag compound = list.getCompound(i);
-            BlockState state = palette[compound.getInt("state")];
-            BlockPos pos = readPos(compound.getList("pos", 3));
+            CompoundTag compound = list.getCompoundOrEmpty(i);
+            BlockState state = palette[compound.getIntOr("state", 0)];
+            BlockPos pos = readPos(compound.getListOrEmpty("pos"));
             blocks[i] = new BlockInfo(pos, state);
         }
         return blocks;
@@ -382,9 +382,9 @@ public class FeatureTemplate {
     }
 
     private static BlockPos readPos(ListTag list) {
-        int x = list.getInt(0);
-        int y = list.getInt(1);
-        int z = list.getInt(2);
+        int x = list.getIntOr(0, 0);
+        int y = list.getIntOr(1, 1);
+        int z = list.getIntOr(2, 2);
         return new BlockPos(x, y, z);
     }
 

@@ -56,7 +56,7 @@ public class SwampSurfaceFeature extends Feature<Config> {
 			                }
 
 			                if (y == waterY && !chunk.getFluidState(pos).isEmpty()) {
-			                    chunk.setBlockState(pos, filler, false);
+			                    chunk.setBlockState(pos, filler);
 			                }
 			                break;
 			            }
@@ -64,7 +64,7 @@ public class SwampSurfaceFeature extends Feature<Config> {
 			        
 			        int y = chunk.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
 			        if (y <= waterY) {
-			            chunk.setBlockState(pos.set(x, y, z), getMaterial(x, y, z, waterY, config), false);
+			            chunk.setBlockState(pos.set(x, y, z), getMaterial(x, y, z, waterY, config));
 			        }					
 				}
 			}	
