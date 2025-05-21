@@ -111,7 +111,7 @@ public class PresetBiomeModifierData {
 				VegetationPlacements.TREES_PLAINS, plainsTrees
 			)));
 			ctx.register(REPLACE_FOREST_TREES, BiomeModifiers.replace(GenerationStep.Decoration.VEGETAL_DECORATION, forests, Map.of(
-				VegetationPlacements.TREES_BIRCH_AND_OAK, forestTrees
+				VegetationPlacements.TREES_BIRCH_AND_OAK_LEAF_LITTER, forestTrees
 			)));
 			ctx.register(REPLACE_FLOWER_FOREST_TREES, BiomeModifiers.replace(GenerationStep.Decoration.VEGETAL_DECORATION, flowerForests, Map.of(
 				VegetationPlacements.TREES_FLOWER_FOREST, flowerForestTrees
