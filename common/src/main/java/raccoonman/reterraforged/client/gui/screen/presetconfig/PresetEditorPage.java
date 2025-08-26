@@ -91,7 +91,7 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 		this.right.addWidget(this.zoom);
 		this.right.addWidget(this.renderMode);
 		this.right.addWidget(this.seed);
-		this.right.addWidget(this.preview);
+//		this.right.addWidget(this.preview);
 	}
 	
 	@Override
@@ -218,7 +218,7 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 	    	int y = this.getY();
 	    	
 	    	this.height = this.getWidth();
-	    	guiGraphics.blit(RenderType::guiTextured, this.textureId, x, y, 0, 0, this.width, this.height, this.width, this.height);
+//	    	guiGraphics.blit(RenderType::guiTextured, this.textureId, x, y, 0, 0, this.width, this.height, this.width, this.height);
 
 	    	this.updateLegend(mx, my);
 
@@ -269,37 +269,37 @@ public abstract class PresetEditorPage extends BisectedPage<PresetConfigScreen, 
 
 	    private void renderLegend(GuiGraphics guiGraphics, int mx, int my, Component[] labels, String[] values, int left, int top, int lineHeight, int color) {
 	        float scale = this.getLegendScale();
-	        PoseStack pose = guiGraphics.pose();
+//	        PoseStack pose = guiGraphics.pose();
 	        	
-	        pose.pushPose();
-	        pose.translate(left + 3.75F * scale, top - lineHeight * (3.2F * scale), 0);
-	        pose.scale(scale, scale, 1);
-	
-	        Minecraft mc = Minecraft.getInstance();
-	        Font renderer = mc.font;
-	        int spacing = 0;
-	        for (Component s : labels) {
-	            spacing = Math.max(spacing, renderer.width(s));
-	        }
-	
-	        float maxWidth = (this.width - 4) / scale;
-	        for (int i = 0; i < labels.length && i < values.length; i++) {
-	        	Component label = labels[i];
-	            String value = values[i];
-	
-	            while (value.length() > 0 && spacing + renderer.width(value) > maxWidth) {
-	                value = value.substring(0, value.length() - 1);
-	            }
-	
-	            guiGraphics.drawString(renderer, label, 0, i * lineHeight, color);
-	            guiGraphics.drawString(renderer, value, spacing, i * lineHeight, color);
-	        }
-	
-	        pose.popPose();
-	
-	        if (!this.hoveredCoords.isEmpty()) {
-	        	guiGraphics.drawCenteredString(renderer, this.hoveredCoords, mx, my - 10, 0xFFFFFF);
-	        }
+//	        pose.pushPose();
+//	        pose.translate(left + 3.75F * scale, top - lineHeight * (3.2F * scale), 0);
+//	        pose.scale(scale, scale, 1);
+//
+//	        Minecraft mc = Minecraft.getInstance();
+//	        Font renderer = mc.font;
+//	        int spacing = 0;
+//	        for (Component s : labels) {
+//	            spacing = Math.max(spacing, renderer.width(s));
+//	        }
+//
+//	        float maxWidth = (this.width - 4) / scale;
+//	        for (int i = 0; i < labels.length && i < values.length; i++) {
+//	        	Component label = labels[i];
+//	            String value = values[i];
+//
+//	            while (value.length() > 0 && spacing + renderer.width(value) > maxWidth) {
+//	                value = value.substring(0, value.length() - 1);
+//	            }
+//
+//	            guiGraphics.drawString(renderer, label, 0, i * lineHeight, color);
+//	            guiGraphics.drawString(renderer, value, spacing, i * lineHeight, color);
+//	        }
+//
+//	        pose.popPose();
+//
+//	        if (!this.hoveredCoords.isEmpty()) {
+//	        	guiGraphics.drawCenteredString(renderer, this.hoveredCoords, mx, my - 10, 0xFFFFFF);
+//	        }
 	    }
 	
 	    private int getZoom() {
